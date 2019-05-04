@@ -1,0 +1,670 @@
+!-Generator IDFEditor 1.50
+!-Option OriginalOrderTop UseSpecialFormat
+
+!-NOTE: All comments with '!-' are ignored by the IDFEditor and are generated automatically.
+!-      Use '!' comments if they need to be retained when using the IDFEditor.
+
+
+##set1 Glazz @@EP14_Gla@@
+##set1 Rat @@EP15_Rat@@
+##set1 RA @@EP16_RA@@
+##set1 Len #[#[#[1600 * RA[]] * Rat[]] ** 0.5]
+##set1 Y #[Len[] / Rat[]]
+
+##set1 Glazz_ZD #eval[1.75 - #[Glazz[] * 1.75]]
+##set1 Glazz_ZU #eval[1.75 + #[Glazz[] * 1.75]]
+##set1 Glazz_XI 0.03
+##set1 Glazz_XF #[Len[] - 0.03]
+##set1 Glazz_YI 0.03
+##set1 Glazz_YF #[Y[] - 0.03]
+
+HVACTemplate:Zone:FanCoil,
+    Thermal Zone 1,          !- Zone Name
+    FC Thermostat,           !- Template Thermostat Name
+    autosize,                !- Supply Air Maximum Flow Rate {m3/s}
+    1.1,                     !- Zone Heating Sizing Factor
+    @@P1@@,                  !- Zone Cooling Sizing Factor
+    Flow/Area,               !- Outdoor Air Method
+    ,                 !- Outdoor Air Flow Rate per Person {m3/s}
+    ,                        !- Outdoor Air Flow Rate per Zone Floor Area {m3/s-m2}
+    ,                        !- Outdoor Air Flow Rate per Zone {m3/s}
+    ,                        !- System Availability Schedule Name
+    @@P2@@,                  !- Supply Fan Total Efficiency
+    @@P10@@,                 !- Supply Fan Delta Pressure {Pa}
+    0.9,                     !- Supply Fan Motor Efficiency
+    1,                       !- Supply Fan Motor in Air Stream Fraction
+    ChilledWater,            !- Cooling Coil Type
+    ,                        !- Cooling Coil Availability Schedule Name
+    @@P3@@,                      !- Cooling Coil Design Setpoint {C}
+    HotWater,                !- Heating Coil Type
+    ,                        !- Heating Coil Availability Schedule Name
+    50,                      !- Heating Coil Design Setpoint {C}
+    ,                        !- Dedicated Outdoor Air System Name
+    SupplyAirTemperature,    !- Zone Cooling Design Supply Air Temperature Input Method
+    11.11,                   !- Zone Cooling Design Supply Air Temperature Difference {deltaC}
+    SupplyAirTemperature,    !- Zone Heating Design Supply Air Temperature Input Method
+    30,                      !- Zone Heating Design Supply Air Temperature Difference {deltaC}
+    ,                        !- Design Specification Outdoor Air Object Name
+    ,                        !- Design Specification Zone Air Distribution Object Name
+    ,                        !- Capacity Control Method
+    0.33,                    !- Low Speed Supply Air Flow Ratio
+    0.66,                    !- Medium Speed Supply Air Flow Ratio
+    ,                        !- Outdoor Air Schedule Name
+    None,                    !- Baseboard Heating Type
+    ,                        !- Baseboard Heating Availability Schedule Name
+    autosize;                !- Baseboard Heating Capacity {W}
+
+HVACTemplate:Plant:ChilledWaterLoop,
+    ChilledWLTest,           !- Name
+    ,                        !- Pump Schedule Name
+    Intermittent,            !- Pump Control Type
+    Default,                 !- Chiller Plant Operation Scheme Type
+    ,                        !- Chiller Plant Equipment Operation Schemes Name
+    ,                        !- Chilled Water Setpoint Schedule Name
+    @@P4@@,                    !- Chilled Water Design Setpoint {C}
+    ConstantPrimaryNoSecondary,  !- Chilled Water Pump Configuration
+    179352,                  !- Primary Chilled Water Pump Rated Head {Pa}
+    179352,                  !- Secondary Chilled Water Pump Rated Head {Pa}
+    Default,                 !- Condenser Plant Operation Scheme Type
+    ,                        !- Condenser Equipment Operation Schemes Name
+    ,                        !- Condenser Water Temperature Control Type
+    ,                        !- Condenser Water Setpoint Schedule Name
+    @@P5@@,                    !- Condenser Water Design Setpoint {C}
+    179352,                  !- Condenser Water Pump Rated Head {Pa}
+    None,                    !- Chilled Water Setpoint Reset Type
+    12.2,                    !- Chilled Water Setpoint at Outdoor Dry-Bulb Low {C}
+    15.6,                    !- Chilled Water Reset Outdoor Dry-Bulb Low {C}
+    6.7,                     !- Chilled Water Setpoint at Outdoor Dry-Bulb High {C}
+    26.7,                    !- Chilled Water Reset Outdoor Dry-Bulb High {C}
+    SinglePump,              !- Chilled Water Primary Pump Type
+    SinglePump,              !- Chilled Water Secondary Pump Type
+    SinglePump,              !- Condenser Water Pump Type
+    Yes,                     !- Chilled Water Supply Side Bypass Pipe
+    Yes,                     !- Chilled Water Demand Side Bypass Pipe
+    Yes,                     !- Condenser Water Supply Side Bypass Pipe
+    Yes,                     !- Condenser Water Demand Side Bypass Pipe
+    Water,                   !- Fluid Type
+    6.67,                    !- Loop Design Delta Temperature {deltaC}
+    ,                        !- Minimum Outdoor Dry Bulb Temperature {C}
+    SequentialLoad,          !- Chilled Water Load Distribution Scheme
+    SequentialLoad;          !- Condenser Water Load Distribution Scheme
+
+HVACTemplate:Plant:Chiller,
+    ChillerTest,             !- Name
+    ElectricCentrifugalChiller,  !- Chiller Type
+    autosize,                !- Capacity {W}
+    @@P6@@,                  !- Nominal COP {W/W}
+    WaterCooled,             !- Condenser Type
+    ,                        !- Priority
+    @@P7@@,                     !- Sizing Factor
+    ,                        !- Minimum Part Load Ratio
+    1,                       !- Maximum Part Load Ratio
+    1,                       !- Optimum Part Load Ratio
+    @@P8@@,                  !- Minimum Unloading Ratio
+    5;                       !- Leaving Chilled Water Lower Temperature Limit {C}
+
+HVACTemplate:Plant:Tower,
+    TowerTest,               !- Name
+    SingleSpeed,             !- Tower Type
+    autosize,                !- High Speed Nominal Capacity {W}
+    autosize,                !- High Speed Fan Power {W}
+    autosize,                !- Low Speed Nominal Capacity {W}
+    autosize,                !- Low Speed Fan Power {W}
+    autosize,                !- Free Convection Capacity {W}
+    ,                        !- Priority
+    @@P9@@;                  !- Sizing Factor
+
+HVACTemplate:Plant:HotWaterLoop,
+    HWLTest,                 !- Name
+    ,                        !- Pump Schedule Name
+    Intermittent,            !- Pump Control Type
+    Default,                 !- Hot Water Plant Operation Scheme Type
+    ,                        !- Hot Water Plant Equipment Operation Schemes Name
+    ,                        !- Hot Water Setpoint Schedule Name
+    82,                      !- Hot Water Design Setpoint {C}
+    ConstantFlow,            !- Hot Water Pump Configuration
+    179352,                  !- Hot Water Pump Rated Head {Pa}
+    None,                    !- Hot Water Setpoint Reset Type
+    82.2,                    !- Hot Water Setpoint at Outdoor Dry-Bulb Low {C}
+    -6.7,                    !- Hot Water Reset Outdoor Dry-Bulb Low {C}
+    65.6,                    !- Hot Water Setpoint at Outdoor Dry-Bulb High {C}
+    10,                      !- Hot Water Reset Outdoor Dry-Bulb High {C}
+    SinglePump,              !- Hot Water Pump Type
+    Yes,                     !- Supply Side Bypass Pipe
+    Yes,                     !- Demand Side Bypass Pipe
+    Water,                   !- Fluid Type
+    11,                      !- Loop Design Delta Temperature {deltaC}
+    ,                        !- Maximum Outdoor Dry Bulb Temperature {C}
+    SequentialLoad;          !- Load Distribution Scheme
+
+HVACTemplate:Plant:Boiler,
+    BoilerTest,              !- Name
+    HotWaterBoiler,          !- Boiler Type
+    autosize,                !- Capacity {W}
+    0.8,                     !- Efficiency
+    NaturalGas,              !- Fuel Type
+    ,                        !- Priority
+    1,                       !- Sizing Factor
+    ,                        !- Minimum Part Load Ratio
+    1.1,                     !- Maximum Part Load Ratio
+    1,                       !- Optimum Part Load Ratio
+    100;                     !- Water Outlet Upper Temperature Limit {C}
+
+Site:GroundTemperature:BuildingSurface,18,18,18,18,18,18,18,18,18,18,18,18;
+
+Output:Table:SummaryReports,
+    AllSummary;              !- Report 1 Name
+
+Output:Diagnostics,
+    DisplayAdvancedReportVariables;  !- Key 1
+
+Output:Diagnostics,
+    DisplayZoneAirHeatBalanceOffBalance;  !- Key 1
+
+Output:Diagnostics,
+    DisplayZoneAirHeatBalanceOffBalance;  !- Key 1
+
+SizingPeriod:WeatherFileDays,
+    DesignDay,               !- Name
+    1,                       !- Begin Month
+    1,                       !- Begin Day of Month
+    12,                      !- End Month
+    31,                      !- End Day of Month
+    Monday,                  !- Day of Week for Start Day
+    Yes,                     !- Use Weather File Daylight Saving Period
+    Yes;                     !- Use Weather File Rain and Snow Indicators
+
+Sizing:Zone,
+    Thermal Zone 1,          !- Zone or ZoneList Name
+    SupplyAirTemperature,    !- Zone Cooling Design Supply Air Temperature Input Method
+    14,                      !- Zone Cooling Design Supply Air Temperature {C}
+    ,                        !- Zone Cooling Design Supply Air Temperature Difference {deltaC}
+    SupplyAirTemperature,    !- Zone Heating Design Supply Air Temperature Input Method
+    26,                      !- Zone Heating Design Supply Air Temperature {C}
+    ,                        !- Zone Heating Design Supply Air Temperature Difference {deltaC}
+    0,                       !- Zone Cooling Design Supply Air Humidity Ratio {kgWater/kgDryAir}
+    0,                       !- Zone Heating Design Supply Air Humidity Ratio {kgWater/kgDryAir}
+    ,                        !- Design Specification Outdoor Air Object Name
+    1.2,                     !- Zone Heating Sizing Factor
+    1.2,                     !- Zone Cooling Sizing Factor
+    DesignDay,               !- Cooling Design Air Flow Method
+    ,                        !- Cooling Design Air Flow Rate {m3/s}
+    0.000762,                !- Cooling Minimum Air Flow per Zone Floor Area {m3/s-m2}
+    ,                        !- Cooling Minimum Air Flow {m3/s}
+    0.2,                     !- Cooling Minimum Air Flow Fraction
+    DesignDay,               !- Heating Design Air Flow Method
+    ,                        !- Heating Design Air Flow Rate {m3/s}
+    0.002032,                !- Heating Maximum Air Flow per Zone Floor Area {m3/s-m2}
+    0.1415762,               !- Heating Maximum Air Flow {m3/s}
+    0.3,                     !- Heating Maximum Air Flow Fraction
+    ,                        !- Design Specification Zone Air Distribution Object Name
+    No,                      !- Account for Dedicated Outdoor Air System
+    NeutralSupplyAir,        !- Dedicated Outdoor Air System Control Strategy
+    autosize,                !- Dedicated Outdoor Air Low Setpoint Temperature for Design {C}
+    autosize;                !- Dedicated Outdoor Air High Setpoint Temperature for Design {C}
+
+ScheduleTypeLimits,
+    TestLimit,               !- Name
+    0,                       !- Lower Limit Value
+    1,                       !- Upper Limit Value
+    Continuous,              !- Numeric Type
+    Dimensionless;           !- Unit Type
+
+HVACTemplate:Thermostat,
+    FC Thermostat,           !- Name
+    ,                        !- Heating Setpoint Schedule Name
+    15,                      !- Constant Heating Setpoint {C}
+    ,                        !- Cooling Setpoint Schedule Name
+    @@EP12_C_SP@@;           !- Constant Cooling Setpoint {C}
+
+Version,8.9;
+Timestep,6;
+
+Building,
+    Building 1,              !- Name
+    ,                        !- North Axis {deg}
+    ,                        !- Terrain
+    ,                        !- Loads Convergence Tolerance Value
+    ,                        !- Temperature Convergence Tolerance Value {deltaC}
+    ,                        !- Solar Distribution
+    ,                        !- Maximum Number of Warmup Days
+    ;                        !- Minimum Number of Warmup Days
+
+Zone,
+    Thermal Zone 1,          !- Name
+    ,                        !- Direction of Relative North {deg}
+    0, 0, 0;                 !- X,Y,Z  {m}
+
+BuildingSurface:Detailed,
+    Surface 1,               !- Name
+    Floor,                   !- Surface Type
+    ExtSlabCarpet 4in ClimateZone 1-8,  !- Construction Name
+    Thermal Zone 1,          !- Zone Name
+    Ground,                  !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    ,                        !- View Factor to Ground
+    ,                        !- Number of Vertices
+    0, 0, 0,                           !- X,Y,Z  1 {m}
+    0, Y[], 0,                            !- X,Y,Z  2 {m}
+    Len[], Y[], 0,                          !- X,Y,Z  3 {m}
+    Len[], 0, 0;                         !- X,Y,Z  4 {m}
+
+BuildingSurface:Detailed,
+    Surface 2,               !- Name
+    Wall,                    !- Surface Type
+    ASHRAE 189.1-2009 ExtWall Mass ClimateZone 5,  !- Construction Name
+    Thermal Zone 1,          !- Zone Name
+    Outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    WindExposed,             !- Wind Exposure
+    ,                        !- View Factor to Ground
+    ,                        !- Number of Vertices
+    0, Y[], 3.5,                        !- X,Y,Z  1 {m}
+    0, Y[], 0,                          !- X,Y,Z  2 {m}
+    0, 0, 0,                            !- X,Y,Z  3 {m}
+    0, 0, 3.5;                          !- X,Y,Z  4 {m}
+
+FenestrationSurface:Detailed,
+    Sub Surface 2,           !- Name
+    Window,                  !- Surface Type
+    ASHRAE 189.1-2009 ExtWindow ClimateZone 4-5,  !- Construction Name
+    Surface 2,               !- Building Surface Name
+    ,                        !- Outside Boundary Condition Object
+    ,                        !- View Factor to Ground
+    ,                        !- Shading Control Name
+    ,                        !- Frame and Divider Name
+    ,                        !- Multiplier
+    ,                        !- Number of Vertices
+    0, Glazz_YF[], Glazz_ZU[],       !- X,Y,Z  1 {m}
+    0, Glazz_YF[], Glazz_ZD[],       !- X,Y,Z  2 {m}
+    0, Glazz_YI[], Glazz_ZD[],       !- X,Y,Z  3 {m}
+    0, Glazz_YI[], Glazz_ZU[];       !- X,Y,Z  4 {m}
+
+BuildingSurface:Detailed,
+    Surface 3,               !- Name
+    Wall,                    !- Surface Type
+    ASHRAE 189.1-2009 ExtWall Mass ClimateZone 5,  !- Construction Name
+    Thermal Zone 1,          !- Zone Name
+    Outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    WindExposed,             !- Wind Exposure
+    ,                        !- View Factor to Ground
+    ,                        !- Number of Vertices
+    0, 0, 3.5,                       !- X,Y,Z  1 {m}
+    0, 0, 0,                         !- X,Y,Z  2 {m}
+    Len[], 0, 0,                          !- X,Y,Z  3 {m}
+    Len[], 0, 3.5;                        !- X,Y,Z  4 {m}
+
+FenestrationSurface:Detailed,
+    Sub Surface 3,           !- Name
+    Window,                  !- Surface Type
+    ASHRAE 189.1-2009 ExtWindow ClimateZone 4-5,  !- Construction Name
+    Surface 3,               !- Building Surface Name
+    ,                        !- Outside Boundary Condition Object
+    ,                        !- View Factor to Ground
+    ,                        !- Shading Control Name
+    ,                        !- Frame and Divider Name
+    ,                        !- Multiplier
+    ,                        !- Number of Vertices
+    Glazz_XI[], 0, Glazz_ZU[],     !- X,Y,Z  1 {m}
+    Glazz_XI[], 0, Glazz_ZD[],     !- X,Y,Z  2 {m}
+    Glazz_XF[], 0, Glazz_ZD[],     !- X,Y,Z  3 {m}
+    Glazz_XF[], 0, Glazz_ZU[];     !- X,Y,Z  4 {m}
+
+BuildingSurface:Detailed,
+    Surface 4,               !- Name
+    Wall,                    !- Surface Type
+    ASHRAE 189.1-2009 ExtWall Mass ClimateZone 5,  !- Construction Name
+    Thermal Zone 1,          !- Zone Name
+    Outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    WindExposed,             !- Wind Exposure
+    ,                        !- View Factor to Ground
+    ,                        !- Number of Vertices
+    Len[], 0, 3.5,                         !- X,Y,Z  1 {m}
+    Len[], 0, 0,                           !- X,Y,Z  2 {m}
+    Len[], Y[], 0,                         !- X,Y,Z  3 {m}
+    Len[], Y[], 3.5;                       !- X,Y,Z  4 {m}
+
+FenestrationSurface:Detailed,
+    Sub Surface 4,           !- Name
+    Window,                  !- Surface Type
+    ASHRAE 189.1-2009 ExtWindow ClimateZone 4-5,  !- Construction Name
+    Surface 4,               !- Building Surface Name
+    ,                        !- Outside Boundary Condition Object
+    ,                        !- View Factor to Ground
+    ,                        !- Shading Control Name
+    ,                        !- Frame and Divider Name
+    ,                        !- Multiplier
+    ,                        !- Number of Vertices
+    Len[], Glazz_YI[], Glazz_ZU[],      !- X,Y,Z  1 {m}
+    Len[], Glazz_YI[], Glazz_ZD[],                  !- X,Y,Z  2 {m}
+    Len[], Glazz_YF[], Glazz_ZD[],                 !- X,Y,Z  3 {m}
+    Len[], Glazz_YF[], Glazz_ZU[];     !- X,Y,Z  4 {m}
+
+BuildingSurface:Detailed,
+    Surface 5,               !- Name
+    Wall,                    !- Surface Type
+    ASHRAE 189.1-2009 ExtWall Mass ClimateZone 5,  !- Construction Name
+    Thermal Zone 1,          !- Zone Name
+    Outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    WindExposed,             !- Wind Exposure
+    ,                        !- View Factor to Ground
+    ,                        !- Number of Vertices
+    Len[], Y[], 3.5,               !- X,Y,Z  1 {m}
+    Len[], Y[], 0,                 !- X,Y,Z  2 {m}
+    0, Y[], 0,                !- X,Y,Z  3 {m}
+    0, Y[], 3.5;              !- X,Y,Z  4 {m}
+
+FenestrationSurface:Detailed,
+    Sub Surface 1,           !- Name
+    Window,                  !- Surface Type
+    ASHRAE 189.1-2009 ExtWindow ClimateZone 4-5,  !- Construction Name
+    Surface 5,               !- Building Surface Name
+    ,                        !- Outside Boundary Condition Object
+    ,                        !- View Factor to Ground
+    ,                        !- Shading Control Name
+    ,                        !- Frame and Divider Name
+    ,                        !- Multiplier
+    ,                        !- Number of Vertices
+    Glazz_XF[], Y[], Glazz_ZU[],        !- X,Y,Z  1 {m}
+    Glazz_XF[], Y[], Glazz_ZD[],        !- X,Y,Z  2 {m}
+    Glazz_XI[], Y[], Glazz_ZD[],        !- X,Y,Z  3 {m}
+    Glazz_XI[], Y[], Glazz_ZU[];        !- X,Y,Z  4 {m}
+
+BuildingSurface:Detailed,
+    Surface 6,               !- Name
+    Roof,                    !- Surface Type
+    ASHRAE 189.1-2009 ExtRoof IEAD ClimateZone 2-5,  !- Construction Name
+    Thermal Zone 1,          !- Zone Name
+    Outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    WindExposed,             !- Wind Exposure
+    ,                        !- View Factor to Ground
+    ,                        !- Number of Vertices
+    0, Y[], 3.5,                          !- X,Y,Z  1 {m}
+    0, 0, 3.5,                         !- X,Y,Z  2 {m}
+    Len[], 0, 3.5,                       !- X,Y,Z  3 {m}
+    Len[], Y[], 3.5;                        !- X,Y,Z  4 {m}
+
+ZoneVentilation:DesignFlowRate,
+    Thermal Zone 1 Ventilation per Person,  !- Name
+    Zone List,               !- Zone or ZoneList Name
+    Always On Continous,     !- Schedule Name
+    Flow/Area,               !- Design Flow Rate Calculation Method
+    ,                        !- Design Flow Rate {m3/s}
+    @@EP10_VRate@@,          !- Flow Rate per Zone Floor Area {m3/s-m2}
+    ,                        !- Flow Rate per Person {m3/s-person}
+    ,                        !- Air Changes per Hour {1/hr}
+    ,                        !- Ventilation Type
+    ,                        !- Fan Pressure Rise {Pa}
+    ,                        !- Fan Total Efficiency
+    ,                        !- Constant Term Coefficient
+    ,                        !- Temperature Term Coefficient
+    ,                        !- Velocity Term Coefficient
+    ;                        !- Velocity Squared Term Coefficient
+
+SimulationControl,
+    Yes,                     !- Do Zone Sizing Calculation
+    Yes,                     !- Do System Sizing Calculation
+    No,                      !- Do Plant Sizing Calculation
+    No,                      !- Run Simulation for Sizing Periods
+    Yes,                     !- Run Simulation for Weather File Run Periods
+    No;                      !- Do HVAC Sizing Simulation for Sizing Periods
+
+ConvergenceLimits,
+    1;                       !- Minimum System Timestep {minutes}
+
+HeatBalanceAlgorithm,ConductionTransferFunction,200;
+
+RunPeriod,
+    Run Period 1,            !- Name
+    1,                       !- Begin Month
+    1,                       !- Begin Day of Month
+    12,                      !- End Month
+    31,                      !- End Day of Month
+    Sunday,                  !- Day of Week for Start Day
+    No,                      !- Use Weather File Holidays and Special Days
+    No,                      !- Use Weather File Daylight Saving Period
+    No,                      !- Apply Weekend Holiday Rule
+    Yes,                     !- Use Weather File Rain Indicators
+    Yes,                     !- Use Weather File Snow Indicators
+    1;                       !- Number of Times Runperiod to be Repeated
+
+ShadowCalculation,
+    AverageOverDaysInFrequency,  !- Calculation Method
+    20,                      !- Calculation Frequency
+    15000;                   !- Maximum Figures in Shadow Overlap Calculations
+
+SurfaceConvectionAlgorithm:Inside,TARP;
+SurfaceConvectionAlgorithm:Outside,DOE-2;
+ZoneAirContaminantBalance,No;
+ZoneAirHeatBalanceAlgorithm,ThirdOrderBackwardDifference;
+ZoneCapacitanceMultiplier:ResearchSpecial,{82d2270d-2ac3-4cdb-a78b-efca3b780a5c},,,,,;
+
+GlobalGeometryRules,
+    UpperLeftCorner,         !- Starting Vertex Position
+    Counterclockwise,        !- Vertex Entry Direction
+    Relative,                !- Coordinate System
+    Relative,                !- Daylighting Reference Point Coordinate System
+    Relative;                !- Rectangular Surface Coordinate System
+
+Material,
+    1/2IN Gypsum,            !- Name
+    Smooth,                  !- Roughness
+    0.0127,                  !- Thickness {m}
+    0.16,                    !- Conductivity {W/m-K}
+    784.9,                   !- Density {kg/m3}
+    830.000000000001,        !- Specific Heat {J/kg-K}
+    0.9,                     !- Thermal Absorptance
+    0.4,                     !- Solar Absorptance
+    0.4;                     !- Visible Absorptance
+
+Material,
+    1IN Stucco,              !- Name
+    Smooth,                  !- Roughness
+    0.0253,                  !- Thickness {m}
+    0.691799999999999,       !- Conductivity {W/m-K}
+    1858,                    !- Density {kg/m3}
+    836.999999999999,        !- Specific Heat {J/kg-K}
+    0.9,                     !- Thermal Absorptance
+    0.92,                    !- Solar Absorptance
+    0.92;                    !- Visible Absorptance
+
+Material,
+    8IN Concrete HW,         !- Name
+    MediumRough,             !- Roughness
+    0.2033,                  !- Thickness {m}
+    1.72959999999999,        !- Conductivity {W/m-K}
+    2242.99999999999,        !- Density {kg/m3}
+    836.999999999999,        !- Specific Heat {J/kg-K}
+    0.9,                     !- Thermal Absorptance
+    0.65,                    !- Solar Absorptance
+    0.65;                    !- Visible Absorptance
+
+Material,
+    MAT-CC05 4 HW CONCRETE,  !- Name
+    Rough,                   !- Roughness
+    0.1016,                  !- Thickness {m}
+    1.311,                   !- Conductivity {W/m-K}
+    2240,                    !- Density {kg/m3}
+    836.800000000001,        !- Specific Heat {J/kg-K}
+    0.9,                     !- Thermal Absorptance
+    0.85,                    !- Solar Absorptance
+    0.85;                    !- Visible Absorptance
+
+Material,
+    Metal Decking,           !- Name
+    MediumSmooth,            !- Roughness
+    0.0015,                  !- Thickness {m}
+    45.006,                  !- Conductivity {W/m-K}
+    7680,                    !- Density {kg/m3}
+    418.4,                   !- Specific Heat {J/kg-K}
+    0.9,                     !- Thermal Absorptance
+    0.6,                     !- Solar Absorptance
+    0.6;                     !- Visible Absorptance
+
+Material,
+    Roof Insulation [21],    !- Name
+    MediumRough,             !- Roughness
+    0.2105,                  !- Thickness {m}
+    0.049,                   !- Conductivity {W/m-K}
+    265,                     !- Density {kg/m3}
+    836.800000000001,        !- Specific Heat {J/kg-K}
+    0.9,                     !- Thermal Absorptance
+    0.7,                     !- Solar Absorptance
+    0.7;                     !- Visible Absorptance
+
+Material,
+    Roof Membrane,           !- Name
+    VeryRough,               !- Roughness
+    0.0095,                  !- Thickness {m}
+    0.16,                    !- Conductivity {W/m-K}
+    1121.29,                 !- Density {kg/m3}
+    1460,                    !- Specific Heat {J/kg-K}
+    0.9,                     !- Thermal Absorptance
+    0.7,                     !- Solar Absorptance
+    0.7;                     !- Visible Absorptance
+
+Material,
+    Wall Insulation [40],    !- Name
+    MediumRough,             !- Roughness
+    0.0793999999999999,      !- Thickness {m}
+    0.0432,                  !- Conductivity {W/m-K}
+    91,                      !- Density {kg/m3}
+    836.999999999999,        !- Specific Heat {J/kg-K}
+    0.9,                     !- Thermal Absorptance
+    0.5,                     !- Solar Absorptance
+    0.5;                     !- Visible Absorptance
+
+Material:NoMass,
+    CP02 CARPET PAD,         !- Name
+    Smooth,                  !- Roughness
+    0.1,                     !- Thermal Resistance {m2-K/W}
+    0.9,                     !- Thermal Absorptance
+    0.8,                     !- Solar Absorptance
+    0.8;                     !- Visible Absorptance
+
+WindowMaterial:Glazing,
+    Theoretical Glass [207], !- Name
+    SpectralAverage,         !- Optical Data Type
+    ,                        !- Window Glass Spectral Data Set Name
+    0.00299999999999999,     !- Thickness {m}
+    0.3311,                  !- Solar Transmittance at Normal Incidence
+    0.6189,                  !- Front Side Solar Reflectance at Normal Incidence
+    0,                       !- Back Side Solar Reflectance at Normal Incidence
+    0.44,                    !- Visible Transmittance at Normal Incidence
+    0.51,                    !- Front Side Visible Reflectance at Normal Incidence
+    0,                       !- Back Side Visible Reflectance at Normal Incidence
+    0,                       !- Infrared Transmittance at Normal Incidence
+    0.9,                     !- Front Side Infrared Hemispherical Emissivity
+    0.9,                     !- Back Side Infrared Hemispherical Emissivity
+    0.0133,                  !- Conductivity {W/m-K}
+    1,                       !- Dirt Correction Factor for Solar and Visible Transmittance
+    No;                      !- Solar Diffusing
+
+WindowProperty:FrameAndDivider,
+    Window Property Frame And Divider 1,  !- Name
+    0.05081016,              !- Frame Width {m}
+    0.05081016,              !- Frame Outside Projection {m}
+    0.05081016,              !- Frame Inside Projection {m}
+    ,                        !- Frame Conductance {W/m2-K}
+    1,                       !- Ratio of Frame-Edge Glass Conductance to Center-Of-Glass Conductance
+    0.7,                     !- Frame Solar Absorptance
+    0.7,                     !- Frame Visible Absorptance
+    0.9,                     !- Frame Thermal Hemispherical Emissivity
+    DividedLite,             !- Divider Type
+    0,                       !- Divider Width {m}
+    0,                       !- Number of Horizontal Dividers
+    0,                       !- Number of Vertical Dividers
+    0,                       !- Divider Outside Projection {m}
+    0,                       !- Divider Inside Projection {m}
+    0,                       !- Divider Conductance {W/m2-K}
+    1,                       !- Ratio of Divider-Edge Glass Conductance to Center-Of-Glass Conductance
+    0,                       !- Divider Solar Absorptance
+    0,                       !- Divider Visible Absorptance
+    0.9,                     !- Divider Thermal Hemispherical Emissivity
+    0,                       !- Outside Reveal Solar Absorptance
+    0,                       !- Inside Sill Depth {m}
+    0,                       !- Inside Sill Solar Absorptance
+    0,                       !- Inside Reveal Depth {m}
+    0;                       !- Inside Reveal Solar Absorptance
+
+Construction,
+    ASHRAE 189.1-2009 ExtRoof IEAD ClimateZone 2-5,  !- Name
+    Roof Membrane,           !- Outside Layer
+    Roof Insulation [21],    !- Layer 2
+    Metal Decking;           !- Layer 3
+
+Construction,
+    ASHRAE 189.1-2009 ExtWall Mass ClimateZone 5,  !- Name
+    1IN Stucco,              !- Outside Layer
+    8IN Concrete HW,         !- Layer 2
+    Wall Insulation [40],    !- Layer 3
+    1/2IN Gypsum;            !- Layer 4
+
+Construction,
+    ASHRAE 189.1-2009 ExtWindow ClimateZone 4-5,  !- Name
+    Theoretical Glass [207]; !- Outside Layer
+
+Construction,
+    ExtSlabCarpet 4in ClimateZone 1-8,  !- Name
+    MAT-CC05 4 HW CONCRETE,  !- Outside Layer
+    CP02 CARPET PAD;         !- Layer 2
+
+Schedule:Constant,Always On Continous,TestLimit,1;
+
+OutputControl:ReportingTolerances,
+    0.2,                     !- Tolerance for Time Heating Setpoint Not Met {deltaC}
+    0.2;                     !- Tolerance for Time Cooling Setpoint Not Met {deltaC}
+
+Site:Location,
+    3850385,                 !- Name
+    53.339,                  !- Latitude {deg}
+    -2.263,                  !- Longitude {deg}
+    0,                       !- Time Zone {hr}
+    69;                      !- Elevation {m}
+
+ZoneList,
+    Zone List,               !- Name
+    Thermal Zone 1;          !- Zone 1 Name
+
+ElectricEquipment,
+    Equip Gain,              !- Name
+    Zone List,               !- Zone or ZoneList Name
+    Always On Continous,     !- Schedule Name
+    Watts/Area,              !- Design Level Calculation Method
+    ,                        !- Design Level {W}
+    @@EP9_IHG@@,                      !- Watts per Zone Floor Area {W/m2}
+    ,                        !- Watts per Person {W/person}
+    ,                        !- Fraction Latent
+    ,                        !- Fraction Radiant
+    ;                        !- Fraction Lost
+
+ZoneInfiltration:DesignFlowRate,
+    Infiltration Name,       !- Name
+    Zone List,               !- Zone or ZoneList Name
+    Always On Continous,     !- Schedule Name
+    Flow/ExteriorArea,       !- Design Flow Rate Calculation Method
+    ,                        !- Design Flow Rate {m3/s}
+    ,                        !- Flow per Zone Floor Area {m3/s-m2}
+    @@EP11_Inf@@,            !- Flow per Exterior Surface Area {m3/s-m2}
+    ,                        !- Air Changes per Hour {1/hr}
+    ,                        !- Constant Term Coefficient
+    ,                        !- Temperature Term Coefficient
+    ,                        !- Velocity Term Coefficient
+    ;                        !- Velocity Squared Term Coefficient
+
+OutputControl:Table:Style,
+    All,                     !- Column Separator
+    JtoKWH;                  !- Unit Conversion
+
+Output:VariableDictionary,IDF,Unsorted;

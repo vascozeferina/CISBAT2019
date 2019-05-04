@@ -1,0 +1,234 @@
+{
+
+	"notes": "c0",
+
+	"csvs": [{
+			"sourceCsv": "eplustbl.csv",
+			"fromReport": "Annual Building Utility Performance Summary",
+			"fromTable": "End Uses",
+			"fromColumn": "Electricity [kWh]",
+			"fromRow": "Cooling",
+			"tableName": "A1_Total_Cooling Elec_Demand",
+			"columnHeaders": "A1_Ele_Cool_[kWh]",
+			"usedInCalc": true
+		},
+		{
+			"sourceCsv": "eplustbl.csv",
+			"fromReport": "Annual Building Utility Performance Summary",
+			"fromTable": "End Uses",
+			"fromColumn": "Electricity [kWh]",
+			"fromRow": "Fans",
+			"tableName": "A2_Total_Elec_Fan",
+			"columnHeaders": "A2_Ele_Fan_[kWh]",
+			"usedInCalc": true
+		},
+		{
+			"sourceCsv": "eplustbl.csv",
+			"fromReport": "Annual Building Utility Performance Summary",
+			"fromTable": "End Uses",
+			"fromColumn": "Electricity [kWh]",
+			"fromRow": "Pumps",
+			"tableName": "A3_Total_Elec_Pumps",
+			"columnHeaders": "A3_Ele_Pumps_[kWh]",
+			"usedInCalc": true
+		},
+		{
+			"sourceCsv": "eplustbl.csv",
+			"fromReport": "Annual Building Utility Performance Summary",
+			"fromTable": "End Uses",
+			"fromColumn": "Electricity [kWh]",
+			"fromRow": "Heat Rejection",
+			"tableName": "A4_Total_Elec_Heat Rejection",
+			"columnHeaders": "A4_Ele_Heat Rejection_[kWh]",
+			"usedInCalc": true
+		},
+		{
+			"sourceCsv": "eplustbl.csv",
+			"fromReport": "Energy Meters",
+			"fromTable": "Annual and Peak Values - Electricity",
+			"fromColumn": "Electricity Annual Value [kWh]",
+			"fromRow": "Electricity:Plant",
+			"tableName": "A5_Total_Plant",
+			"columnHeaders": "A5_Ele_Plant[kWh]",
+			"usedInCalc": true
+		},
+		{
+			"sourceCsv": "eplustbl.csv",
+			"fromReport": "Energy Meters",
+			"fromTable": "Annual and Peak Values - Other",
+			"fromColumn": "Annual Value [kWh]",
+			"fromRow": "Cooling:EnergyTransfer",
+			"tableName": "A6_Total_CoolEnTransfer",
+			"columnHeaders": "A6_Ele_CoolEnTransfer[kWh]",
+			"usedInCalc": true
+		},
+		{
+			"sourceCsv": "eplustbl.csv",
+			"fromReport": "Energy Meters",
+			"fromTable": "Annual and Peak Values - Other",
+			"fromColumn": "Annual Value [kWh]",
+			"fromRow": "CoolingCoils:EnergyTransfer",
+			"tableName": "A7_Cool_Coil[kWh]",
+			"columnHeaders": "A7_Ele_CoolCoil[kWh]",
+			"usedInCalc": true
+		},
+		{
+			"sourceCsv": "eplustbl.csv",
+			"fromReport": "Energy Meters",
+			"fromTable": "Annual and Peak Values - Other",
+			"fromColumn": "Annual Value [kWh]",
+			"fromRow": "Chillers:EnergyTransfer",
+			"tableName": "A8_Cool_Chiller[kWh]",
+			"columnHeaders": "A8_Cool_Chiller[kWh]",
+			"usedInCalc": true
+		},
+		{
+			"sourceCsv": "eplustbl.csv",
+			"fromReport": "Energy Meters",
+			"fromTable": "Annual and Peak Values - Other",
+			"fromColumn": "Annual Value [kWh]",
+			"fromRow": "HeatRejection:EnergyTransfer",
+			"tableName": "A9_HRej[kWh]",
+			"columnHeaders": "A9_HRej[kWh]",
+			"usedInCalc": true
+		},
+		{
+			"sourceCsv": "eplustbl.csv",
+			"fromReport": "Annual Building Utility Performance Summary",
+			"fromTable": "End Uses",
+			"fromColumn": "Electricity [W]",
+			"fromRow": "Cooling",
+			"tableName": "P1_Total_Cooling Elec_Demand",
+			"columnHeaders": "P1_Ele_Cool_[W]",
+			"usedInCalc": true
+		},
+		{
+			"sourceCsv": "eplustbl.csv",
+			"fromReport": "Annual Building Utility Performance Summary",
+			"fromTable": "End Uses",
+			"fromColumn": "Electricity [W]",
+			"fromRow": "Fans",
+			"tableName": "P2_Total_Elec_Fan",
+			"columnHeaders": "P2_Ele_Fan_[W]",
+			"usedInCalc": true
+		},
+		{
+			"sourceCsv": "eplustbl.csv",
+			"fromReport": "Annual Building Utility Performance Summary",
+			"fromTable": "End Uses",
+			"fromColumn": "Electricity [W]",
+			"fromRow": "Pumps",
+			"tableName": "P3_Total_Elec_Pumps",
+			"columnHeaders": "P3_Ele_Pumps_[W]",
+			"usedInCalc": true
+		},
+		{
+			"sourceCsv": "eplustbl.csv",
+			"fromReport": "Annual Building Utility Performance Summary",
+			"fromTable": "End Uses",
+			"fromColumn": "Electricity [W]",
+			"fromRow": "Heat Rejection",
+			"tableName": "P4_Total_Elec_Heat Rejection",
+			"columnHeaders": "P4_Ele_Heat Rejection_[W]",
+			"usedInCalc": true
+		},
+		{
+			"sourceCsv": "eplustbl.csv",
+			"fromReport": "Energy Meters",
+			"fromTable": "Annual and Peak Values - Electricity",
+			"fromColumn": "Electricity Maximum Value [W]",
+			"fromRow": "Electricity:Plant",
+			"tableName": "P5_Total_Plant",
+			"columnHeaders": "P5_Ele_Plant[W]",
+			"usedInCalc": true
+		},
+		{
+			"sourceCsv": "eplustbl.csv",
+			"fromReport": "Energy Meters",
+			"fromTable": "Annual and Peak Values - Other",
+			"fromColumn": "Maximum Value [W]",
+			"fromRow": "Cooling:EnergyTransfer",
+			"tableName": "P6_Total_CoolEnTransfer",
+			"columnHeaders": "P6_Ele_CoolEnTransfer[W]",
+			"usedInCalc": true
+		},
+		{
+			"sourceCsv": "eplustbl.csv",
+			"fromReport": "Energy Meters",
+			"fromTable": "Annual and Peak Values - Other",
+			"fromColumn": "Maximum Value [W]",
+			"fromRow": "CoolingCoils:EnergyTransfer",
+			"tableName": "P7_Cool_Coil[W]",
+			"columnHeaders": "P7_Ele_CoolCoil[W]",
+			"usedInCalc": true
+		},
+		{
+			"sourceCsv": "eplustbl.csv",
+			"fromReport": "Energy Meters",
+			"fromTable": "Annual and Peak Values - Other",
+			"fromColumn": "Maximum Value [W]",
+			"fromRow": "Chillers:EnergyTransfer",
+			"tableName": "P8_Cool_Chiller[W]",
+			"columnHeaders": "P8_Cool_Chiller[W]",
+			"usedInCalc": true
+		},
+		{
+			"sourceCsv": "eplustbl.csv",
+			"fromReport": "Energy Meters",
+			"fromTable": "Annual and Peak Values - Other",
+			"fromColumn": "Maximum Value [W]",
+			"fromRow": "HeatRejection:EnergyTransfer",
+			"tableName": "P9_HRej[W]",
+			"columnHeaders": "P9_HRej[W]",
+			"usedInCalc": true
+		},
+		{
+			"sourceCsv": "eplustbl.csv",
+			"fromReport": "Input Verification and Results Summary",
+			"fromTable": "Zone Summary",
+			"fromColumn": "Area [m2]",
+			"fromRow": "Total",
+			"tableName": "O1_Floor Area",
+			"columnHeaders": "O1_Floor Area[m2]",
+			"usedInCalc": true
+		},
+		{
+			"sourceCsv": "eplustbl.csv",
+			"fromReport": "Energy Meters",
+			"fromTable": "Annual and Peak Values - Cooling",
+			"fromColumn": "Timestamp of Maximum {TIMESTAMP}",
+			"fromRow": "PlantLoopCoolingDemand:Facility",
+			"tableName": "O2_Time_PlantLoop",
+			"columnHeaders": "O2_Time_PlantLoop",
+			"usedInCalc": true
+		},
+		{
+			"sourceCsv": "eplustbl.csv",
+			"fromReport": "Sensible Heat Gain Summary",
+			"fromTable": "Peak Cooling Sensible Heat Gain Components",
+			"fromColumn": "Time of Peak {TIMESTAMP}",
+			"fromRow": "Total Facility",
+			"tableName": "O3_Time_SensLoads",
+			"columnHeaders": "O3_Time_SensLoads",
+			"usedInCalc": true
+		},
+		{
+			"sourceCsv": "eplustbl.csv",
+			"fromReport": "Demand End Use Components Summary",
+			"fromTable": "End Uses",
+			"fromColumn": "Electricity [W]",
+			"fromRow": "Time of Peak",
+			"tableName": "O4_Time_EleUse",
+			"columnHeaders": "O4_Time_EleUse",
+			"usedInCalc": true
+		}
+	],
+	"userVars": [{
+			"identifier": "v0",
+			"formula": "c2/c3",
+			"caption": "Test",
+			"report": true
+		}
+
+	]
+}
